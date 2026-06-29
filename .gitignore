@@ -1,0 +1,8 @@
+# C test/bench harness build artifacts (the F* cache/krml/extract staging is
+# ignored under fstar/.gitignore).
+/test/test_huffman
+/test/test_diff
+/bench/bench_huffman
+*.o
+*.out
+a.out

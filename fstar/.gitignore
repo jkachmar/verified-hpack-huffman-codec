@@ -1,0 +1,5 @@
+# F* verification cache and KaRaMeL extraction staging — regenerated, not committed.
+.cache/
+*.krml
+extract/
+__pycache__/

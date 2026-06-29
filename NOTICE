@@ -1,0 +1,33 @@
+verified-hpack-huffman
+Copyright (c) 2026 Ian Duncan
+
+Licensed under the Mozilla Public License 2.0 (see LICENSE).
+
+
+PRIOR ART / ATTRIBUTION
+=======================
+
+The HPACK Huffman decode automaton proven correct here descends, algorithmically,
+from the nibble-DFA decode table in nghttp2:
+
+    nghttp2 — HTTP/2 C Library
+    Copyright (c) 2013 Tatsuhiro Tsujikawa
+    MIT License — https://github.com/nghttp2/nghttp2
+
+  which is in turn after:
+
+    R. Pajarola, "Fast Prefix Code Processing," Proceedings of the International
+    Conference on Information Technology: Coding and Computing (ITCC), 2003.
+
+The shipped sources of this repository contain NO nghttp2 source code. The verified
+C in `cbits/generated/` is produced by KaRaMeL from the F* proof, whose transition
+table is generated from the RFC 7541 Appendix B code table and proved equal to the
+specification decoder (`Hpack.Huffman.Refine.DfaTable`). nghttp2 is referenced only:
+
+  (a) as the algorithmic origin of the nibble-DFA approach this work proves correct; and
+  (b) as an optional differential-testing oracle (`test/test_diff.c`), which links the
+      nghttp2 library at test time but incorporates none of its source.
+
+The git history of `cbits/hpack_huffman.c` includes earlier revisions that embedded
+nghttp2's MIT-licensed decode table directly (before the verified implementation
+replaced it); those revisions remain attributed to nghttp2 (MIT) as above.
